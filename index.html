@@ -15,7 +15,8 @@
           .append("p")
           .text(function(d) {
               return "I can count up to " + d;
-          });
+          })
+          .style("color", "red");
       d3.csv("food.csv", function(data) {
           console.log(data);
       });
