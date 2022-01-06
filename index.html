@@ -34,7 +34,13 @@
       d3.csv("food.csv", function(data) {
           console.log(data);
       });
+
+      d3.select("body")
+          .selectAll("div")
+          .data(dataset)
+          .enter()
+          .append("div")
+          .attr("class", "bar");
     </script>
-    <div class="bar"></div>
   </body>
 </html>
