@@ -51,6 +51,14 @@
               return "rgb(0, 0, " + (d * 10) + ")";
           });
 
+      svg.selectAll("text")
+         .data(dataset)
+         .enter()
+         .append("text")
+         .text(function(d) {
+             return d;
+         });
+
       d3.select("body")
         .append("br")
 
