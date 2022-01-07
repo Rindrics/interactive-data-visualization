@@ -41,15 +41,20 @@
           console.log(data);
       });
 
-      d3.select("body")
-          .selectAll("div")
+
+      var svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+      svg.selectAll("rect")
           .data(dataset)
           .enter()
-          .append("div")
-          .attr("class", "bar")
-          .style("height", function(d) {
-              return d + "px";
-          });
+          .append("rect")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("width", 20)
+          .attr("height", 100);
 
 
       var svg = d3.select("body")
