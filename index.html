@@ -61,7 +61,8 @@
           .attr("width", w / dataset.length - barPadding)
           .attr("height", function(d) {
               return d;
-          });
+          })
+          .attr("fill", "teal");
 
       d3.select("body")
         .append("br")
