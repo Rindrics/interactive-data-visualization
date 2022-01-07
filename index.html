@@ -15,6 +15,8 @@
   </head>
   <body>
     <script type="text/javascript">
+      var w = 500;
+      var h = 50;
       var dataset = [];
       for (var i = 0; i < 25; i++) {
           var newNumber = Math.floor(Math.random() * 30);
@@ -48,6 +50,16 @@
           .style("height", function(d) {
               return d + "px";
           });
+
+      var svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+      var circles = svg.selectAll("circle")
+                       .data(dataset)
+                       .enter()
+                       .append("circle");
     </script>
   </body>
 </html>
