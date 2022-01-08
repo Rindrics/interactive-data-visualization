@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var w = 500;
       var h = 100;
-      var barPadding = 1;
+      var padding = 20;
       var dataset = [
                   [5, 20],
                   [480, 90],
@@ -41,10 +41,10 @@
 
       var xScale = d3.scaleLinear()
                      .domain([0, d3.max(dataset, function(d) {return d[0];})])
-                     .range([0, w]);
+                     .range([padding, w - padding * 2]);
       var yScale = d3.scaleLinear()
                      .domain([0, d3.max(dataset, function(d) {return d[1];})])
-                     .range([h, 0]);
+                     .range([h - padding * 2, padding]);
 
       svg.selectAll("circle")
           .data(dataset)
