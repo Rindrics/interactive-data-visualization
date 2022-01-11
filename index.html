@@ -49,6 +49,8 @@
                      .domain([0, d3.max(dataset, function(d) {return d[1];})])
                      .range([2, 5]);
 
+      var xAxis = d3.axisBottom()
+                    .scale(xScale);
       svg.selectAll("circle")
           .data(dataset)
           .enter()
@@ -91,6 +93,8 @@
                   .attr("width", w)
                   .attr("height", h);
 
+      svg.append("g")
+         .call(xAxis);
     </script>
   </body>
 </html>
