@@ -5,6 +5,16 @@
     <title>D3 Page Template</title>
     <script type="text/javascript" src="d3/d3.js"></script>
     <style>
+      .axis path,
+      .axis line {
+          fill: none;
+          stroke: black;
+          shape-rendering: crispEdges;
+      }
+      .axis text {
+          font-family: sans-serif;
+          font-size: 11px;
+      }
     </style>
   </head>
   <body>
@@ -88,6 +98,7 @@
                   .attr("height", h);
 
       svg.append("g")
+         .attr("class", "axis")
          .call(xAxis);
     </script>
   </body>
