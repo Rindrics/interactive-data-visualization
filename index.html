@@ -84,6 +84,7 @@
                         5, 10, 13, 19, 21, 25, 22, 18, 15, 13];
             svg.selectAll("rect")
                .data(dataset)
+               .transition()
                .attr("y", function(d) {
                    return h - yScale(d);
                })
