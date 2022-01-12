@@ -18,6 +18,7 @@
     </style>
   </head>
   <body>
+    <p>Click on text to update the chart with new data values as many times as you like!</p>
     <script type="text/javascript">
       var w = 600;
       var h = 250;
@@ -76,6 +77,20 @@
          .attr("font-size", "11px")
          .attr("fill", "white")
          .attr("text-anchor", "middle");
+
+      d3.select("p")
+        .on("click", function() {
+            dataset = [11, 12, 15, 20, 18, 17, 16, 18, 23, 25,
+                        5, 10, 13, 19, 21, 25, 22, 18, 15, 13];
+            svg.selectAll("rect")
+               .data(dataset)
+               .attr("y", function(d) {
+                   return h - yScale(d);
+               })
+               .attr("height", function(d) {
+                   return yScale(d);
+               });
+        });
 
     </script>
   </body>
