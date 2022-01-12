@@ -24,6 +24,7 @@
       var h = 250;
       var barPadding = 1;
       var duration = 2000;
+      var easement = d3.easeBounce;
       var dataset = [5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
                      10, 12, 15, 20, 18, 17, 16, 18, 23, 25];
       d3.csv("food.csv", function(data) {
@@ -87,6 +88,7 @@
                .data(dataset)
                .transition()
                .duration(duration)
+               .ease(easement)
                .attr("y", function(d) {
                    return h - yScale(d);
                })
@@ -100,6 +102,7 @@
                .data(dataset)
                .transition()
                .duration(duration)
+               .ease(easement)
                .text(function(d) {
                    return d;
                })
