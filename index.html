@@ -89,6 +89,7 @@
                 var newNumber = Math.floor(Math.random() * 25);
                 dataset.push(newNumber);
             }
+            yScale.domain([0, d3.max(dataset)]);
             svg.selectAll("rect")
                .data(dataset)
                .transition()
