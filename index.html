@@ -88,7 +88,7 @@
                .data(dataset)
                .transition()
                .delay(function(d, i) {
-                   return i * 100;
+                   return i / dataset.length * 100;
                })
                .duration(duration)
                .ease(easement)
@@ -105,7 +105,7 @@
                .data(dataset)
                .transition()
                .delay(function(d, i) {
-                   return i * 100;
+                   return i / dataset.length * 100;
                })
                .duration(duration)
                .ease(easement)
