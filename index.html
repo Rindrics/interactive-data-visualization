@@ -18,7 +18,7 @@
     </style>
   </head>
   <body>
-    <p>Click on text to update the chart with new data values as many times as you like!</p>
+    <p>Click on text to remove a data value from the chart!</p>
 
 		<script type="text/javascript">
 
@@ -92,7 +92,7 @@
 					//Add one new value to dataset
 					var maxValue = 25;
 					var newNumber = Math.floor(Math.random() * maxValue);	//New random integer (0-24)
-					dataset.push(newNumber);			 			 		//Add new number to array
+                                        dataset.shift();			 			 		//Add new number to array
 					
 					//Update scale domains
 					xScale.domain(d3.range(dataset.length));	//Recalibrate the x scale domain, given the new length of dataset
@@ -130,6 +130,12 @@
 						.attr("height", function(d) {			//Set new height value, based on the updated yScale
 							return yScale(d);
 						});
+
+                                    bars.exit()
+                                        .transition()
+                                        .duration(500)
+                                        .attr("x", w)
+                                        .remove();
 
 
 
