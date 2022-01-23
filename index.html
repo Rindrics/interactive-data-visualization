@@ -111,9 +111,6 @@
     d3.select("p")
         .on("click", function() {
 
-            //Add one new value to dataset
-            var maxValue = 25;
-            var newNumber = Math.floor(Math.random() * maxValue);	//New random integer (0-24)
             dataset.shift();			                                        //Add new number to array
 
             //Update scale domains
