@@ -18,7 +18,8 @@
     </style>
   </head>
   <body>
-    <p>Click on text to remove a data value from the chart!</p>
+    <p id="add">Add a new data value</p>
+    <p id="remove">Remove a new data value</p>
 
     <script type="text/javascript">
 
@@ -85,33 +86,28 @@
         return "rgb(0, 0, " + Math.round(d.value * 10) + ")";
     });
 
-      //Create labels
-      svg.selectAll("text")
-    .data(dataset, key)
-    .enter()
-    .append("text")
-    .text(function(d) {
-        return d.value;
-    })
-    .attr("text-anchor", "middle")
-    .attr("x", function(d, i) {
-        return xScale(i) + xScale.bandwidth() / 2;
-    })
-    .attr("y", function(d) {
-        return h - yScale(d.value) + 14;
-    })
-    .attr("font-family", "sans-serif")
-    .attr("font-size", "11px")
-    .attr("fill", "white");
 
 
 
 
       //On click, update with new data
-    d3.select("p")
+    d3.selectAll("p")
         .on("click", function() {
 
-            dataset.shift();			                                        //Add new number to array
+            var paragraphID = d3.select(this).attr("id");
+
+            if (paragraphID == "add") {
+                var maxValue = 25;
+                var newNumber = Math.floor(Math.random() * maxValue);
+                var lastKeyValue = dataset[dataset.length - 1].key;
+                console.log(lastKeyValue);
+                dataset.push({
+                    key: lastKeyValue + 1,
+                    value: newNumber
+                });
+            } else {
+                dataset.shift();
+            }
 
             //Update scale domains
             xScale.domain(d3.range(dataset.length));	//Recalibrate the x scale domain, given the new length of dataset
@@ -150,12 +146,6 @@
                     return yScale(d.value);
                 });
 
-        bars.exit()
-            .transition()
-            .duration(500)
-            .attr("x", -xScale.bandwidth())
-            .remove();
-
 
 
         //Update all labels
@@ -193,14 +183,42 @@
                 return yScale(d.value);
             });
 
-        texts.exit()
-            .transition()
-            .duration(500)
-            .attr("x", -xScale.bandwidth())
-            .remove();
+        if (paragraphID == "remove") {
+            bars.exit()
+                .transition()
+                .duration(500)
+                .attr("x", -xScale.bandwidth())
+                .remove();
+            texts.exit()
+                .transition()
+                .duration(500)
+                .attr("x", -xScale.bandwidth())
+                .remove();
+
+        }
+
+
 
     });
 
+      //Create labels
+      svg.selectAll("text")
+    .data(dataset, key)
+    .enter()
+    .append("text")
+    .text(function(d) {
+        return d.value;
+    })
+    .attr("text-anchor", "middle")
+    .attr("x", function(d, i) {
+        return xScale(i) + xScale.bandwidth() / 2;
+    })
+    .attr("y", function(d) {
+        return h - yScale(d.value) + 14;
+    })
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "11px")
+    .attr("fill", "white");
 
     </script>
   </body>
