@@ -8,9 +8,6 @@
           import d3Transition from 'https://cdn.skypack.dev/d3-transition';
         </script>
         <style>
-          svg text {
-              pointer-events: none;
-          }
         </style>
     </head>
     <body>
@@ -71,6 +68,7 @@
             .data(dataset)
             .enter()
             .append("text")
+            .style("pointer-events", "none")
             .text(function(d) {
                 return d;
             })
