@@ -4,11 +4,13 @@
         <meta charset="utf-8">
         <title>D3: A starting point for interactivity</title>
         <script type="text/javascript" src="d3/d3.js"></script>
+        <script type="module">
+          import d3Transition from 'https://cdn.skypack.dev/d3-transition';
+        </script>
     </head>
     <body>
-        <script type="text/javascript">
-
-         //Width and height
+      <script type="text/javascript">
+        //Width and height
          var w = 600;
          var h = 250;
          
@@ -56,10 +58,7 @@
                 d3.select(this)
                     .transition()
                     .duration(250)
-                    .attr("fill", "rgb(0, 0, " + (d * 10) +")");
-            })
-            .on("click", function(d) {
-                console.log(d);
+                    .attr("fill", "rgb(0, 0, " + (d * 10) + ")");
             });
 
          //Create labels
