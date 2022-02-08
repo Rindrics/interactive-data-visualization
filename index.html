@@ -8,6 +8,15 @@
           import d3Transition from 'https://cdn.skypack.dev/d3-transition';
         </script>
         <style>
+          rect {
+              -moz-transition: all 0.3s;
+              -o-transition: all 0.3s;
+              -webkit-transition: all 0.3s;
+              transition: all 0.3s;
+          }
+          rect:hover {
+              fill: orange;
+          }
         </style>
     </head>
     <body>
@@ -51,16 +60,6 @@
             })
             .attr("fill", function(d) {
                 return "rgb(0, 0, " + Math.round(d * 10) + ")";
-            })
-            .on("mouseover", function() {
-                d3.select(this)
-                    .attr("fill", "orange");
-            })
-            .on("mouseout", function(d) {
-                d3.select(this)
-                    .transition()
-                    .duration(250)
-                    .attr("fill", "rgb(0, 0, " + (d * 10) + ")");
             })
             .on("click", function() {
                 sortBars();
