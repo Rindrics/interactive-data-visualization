@@ -84,11 +84,19 @@
            .attr("font-family", "sans-serif")
            .attr("font-size", "11px")
            .attr("fill", "white");
+        var sortOrder = false;
+
 
         var sortBars = function() {
+
+            sortOrder = !sortOrder;
             svg.selectAll("rect")
                 .sort(function(a, b) {
-                    return d3.ascending(a, b);
+                    if (sortOrder) {
+                      return d3.ascending(a, b);
+                    } else {
+                      return d3.descending(a, b);
+                    }
                 })
                 .transition()
                 .duration(1000)
