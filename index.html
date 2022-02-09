@@ -61,13 +61,27 @@
            .attr("fill", function(d) {
                return "rgb(0, 0, " + Math.round(d * 10) + ")";
            })
+           .on("mouseover", function(d) {
+               var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.bandwidth() / 2;
+               var yPosition = parseFloat(d3.select(this).attr("y")) + 14;
+               svg.append("text")
+                 .attr("id", "tooltip")
+                 .attr("x", xPosition)
+                 .attr("y", yPosition)
+                 .attr("text-anchor", "middle")
+                 .attr("font-family", "sans-serif")
+                 .attr("text-size", "11px")
+                 .attr("text-weight", "bold")
+                 .attr("fill", "black")
+                 .text(d);
+           })
+           .on("mouseout", function() {
+               d3.select("#tooltip").remove()
+           })
            .on("click", function() {
                sortBars();
-           })
-           .append("title")
-           .text(function(d) {
-               return "This value is " + d;
            }) ;
+
 
         var sortOrder = false;
 
